@@ -8,10 +8,11 @@ import {
     Button,StatusBar,
     TouchableOpacity,
     TouchableHighlight,
+    Keyboard,
 } from 'react-native';
 import ColorStyles from '../src/common/ColorStyles';
 import LoginItem from './components/LoginItem';
-
+// const dismissKeyboard=require('dismissKeyboard')
 export default class LoginScreen extends Component {
   static navigationOptions = {
     header: null,
@@ -22,6 +23,20 @@ export default class LoginScreen extends Component {
       username:null,
       password:null,
     }
+  }
+//   componentWillMount(){
+// this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow',this.keyboardShow)
+// this.keyboardDidHideListener=Keyboard.addListener('keyboardDidHide',this.keyboardHide)
+//   }
+//   componentWillUnmount(){
+// this.keyboardDidShowListener.remove();
+// this.keyboardDidHideListener.remove();
+//   }
+  keyboardShow=()=>{
+// alert('show')
+  }
+  keyboardHide=()=>{
+    // alert('dismiss')
   }
   render() {
     const nav = this.props.navigation
@@ -45,7 +60,10 @@ export default class LoginScreen extends Component {
        <TouchableOpacity activeOpacity={0.9} onPress = {
          ()=>{
             console.log(this.state.username);
-           nav.navigate('home',{username:this.state.username,password:this.state.password})}}>
+            Keyboard.dismiss()
+            // dismissKeyboard()
+            nav.navigate('home',{username:this.state.username,password:this.state.password})
+           }}>
        <Text style={styles.btnLogin}>登录</Text>
      </TouchableOpacity>
      </View>
