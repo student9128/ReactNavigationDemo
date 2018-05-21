@@ -30,9 +30,9 @@ const tabNavigator = TabNavigator({
   home: {
     screen: MainScreen,
     navigationOptions:{
-      tabBarLabel:'首页',
-      headerTitle:'首页',
-      tabBarIcon:({
+      tabBarLabel:'首页',//tabBar下面的文章
+      headerTitle:'首页',//标题
+      tabBarIcon:({//tabBar的图标
         tintColor
       })=>
         <Icon name='ios-home' size={25} color={tintColor}/>
@@ -80,11 +80,11 @@ const tabNavigator = TabNavigator({
     }
   }
 }, {
-  initialRouteName: 'home',
-  tabBarPosition: 'bottom',
+  initialRouteName: 'home',//默认tab
+  tabBarPosition: 'bottom',//tabBar位置
   backBehavior: 'none',
-  swipeEnabled: false,
-  animationEnabled: false,
+  swipeEnabled: false,//不可滑动
+  animationEnabled: false,//切换页面时候没有滑动效果
   tabBarOptions: {
     activeTintColor: ColorStyles.global,
     inactiveTintColor: '#333333',

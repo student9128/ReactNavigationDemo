@@ -10,13 +10,19 @@ import {
     TouchableHighlight,
 } from 'react-native';
 import ColorStyles from '../src/common/ColorStyles';
-import Icon from 'react-native-vector-icons/Ionicons';
 import LoginItem from './components/LoginItem';
 
 export default class LoginScreen extends Component {
   static navigationOptions = {
     header: null,
   };
+  constructor(props){
+    super(props);
+    this.state={
+      username:null,
+      password:null,
+    }
+  }
   render() {
     const nav = this.props.navigation
     return (
@@ -28,12 +34,18 @@ export default class LoginScreen extends Component {
      <View style={styles.loginItemContainer}>
        <LoginItem icon_name='ios-contact' 
        placeholder='Please text in username'
-       icon_color={ColorStyles.global}/>
+       icon_color={ColorStyles.global}
+       onChangeText={(text) => this.state.username=text}/>
        <LoginItem icon_name='ios-lock' 
        placeholder='Please text in password'
        secureTextEntry={true}
-       icon_color={ColorStyles.global}/>
-       <TouchableOpacity activeOpacity={0.9} onPress = {()=>nav.navigate('home')}>
+       icon_color={ColorStyles.global}
+       onChangeText={(text) => this.state.password= text}/>
+       
+       <TouchableOpacity activeOpacity={0.9} onPress = {
+         ()=>{
+            console.log(this.state.username);
+           nav.navigate('home',{username:this.state.username,password:this.state.password})}}>
        <Text style={styles.btnLogin}>登录</Text>
      </TouchableOpacity>
      </View>
